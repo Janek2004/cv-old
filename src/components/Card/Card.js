@@ -1,10 +1,10 @@
 //import { useEffect } from "react";
 
 
-const Card = ({ children, className }) => {
-    
+const Card = ({ children, className, style }) => {
+
     return (
-        <div className={`card ${className}`}>
+        <div style={style} className={`card ${className}`}>
             {children}
         </div>
     )

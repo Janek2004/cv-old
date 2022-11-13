@@ -1,49 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const FlyingLetter = ({ letter, id }) => {
 
     const letterRef = useRef();
-
-    useEffect(() => {
-        return;
-        let playing = false;
-        let isHover = false;
-        letterRef.current.addEventListener('mouseover', () => {
-            letterRef.current.className = 'letter letterUp';
-            playing = true;
-            isHover = true;
-            setTimeout(() => {
-                playing = false;
-                if (!isHover) letterRef.current.className = 'letter letterDown';
-            }, 100);
-        })
-        letterRef.current.addEventListener('mouseout', () => {
-            isHover = false;
-            if (!playing) letterRef.current.className = 'letter letterDown';
-            setTimeout(() => {
-                letterRef.current.className = 'letter';
-            }, 200);
-        })
-
-        let interval1;
-
-        setTimeout(() => {
-            interval1 = setInterval(() => {
-                letterRef.current.className = 'letter letterUp';
-                setTimeout(() => {
-                    letterRef.current.className = 'letter letterDown';
-                    setTimeout(() => {
-                        letterRef.current.className = 'letter';
-                    }, 100)
-                }, 200);
-            }, 5000)
-        }, id * 25)
-
-        return () => {
-            clearInterval(interval1);
-        }
-
-    }, [id])
 
     return (
         <span className="letter" style={{ animationDelay: `${(id * 50) / 1000}s` }} ref={letterRef}>{letter === ' ' ? ' ' : letter}</span>
@@ -83,7 +42,7 @@ const Header = () => {
                     Welcome
                 </h1>
                 <h2>
-                    To my universe!
+                    To my website!
                 </h2>
                 <h3>
                     <FlyingLetters text='My name is Janek, and this is my knowledge about HTML, CSS, JS and ReactJS!' />
